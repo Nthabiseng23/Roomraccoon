@@ -7,7 +7,7 @@
 
 <h1>Products list</h1>
 <div>
-    <a class="btn btn-primary" href="">Add Item</a>
+    <a class="btn btn-primary" href="addItems.php">Add Item</a>
 </div>
 <br/>
 <table class="table table-striped">
