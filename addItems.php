@@ -36,10 +36,16 @@
             return;
         }
 
+        var formData = {
+            itemName: itemName,
+            };
+
         $.ajax({
             type: "POST",
             url: "data_file.php",
-            data: $("#item_name").val(), 
+            data: formData,
+            dataType: "json",
+            encode: true, 
             success: function(html) {
                 console.log(html);
                 $("form").trigger("reset");
