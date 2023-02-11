@@ -42,9 +42,9 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
 
     $result = mysqli_query($con,"SELECT * FROM `products` LIMIT $offset, $total_records_per_page");
     while($row = mysqli_fetch_array($result)){
-		echo "<tr>
+		echo "<tr data-id = ".$row['id'].">
 			  <td>".$row['prod_name']."</td>
-	 		  <td><a class='btn btn-secondary' href=''>Edit</a> | <a class='btn btn-danger' href=''>Delete</a> | <input type='checkbox'>Checked</td>
+	 		  <td><a class='btn btn-secondary edit'>Edit</a> | <a class='btn btn-danger delete'>Delete</a> | <input type='checkbox'>Checked</td>
 		   	  </tr>";
         }
 	mysqli_close($con);

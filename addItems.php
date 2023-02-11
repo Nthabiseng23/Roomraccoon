@@ -16,7 +16,7 @@
         </div>    
         <br/>
         <div class = "form_group">    
-            <a class='btn btn-success submit' type='submit'>Submit</a>
+            <a class='btn btn-success submit' type='submit'>Submit</a> | <a class='btn btn-primary' href='index.php'>home</a>
         </div>    
             
     </div>    
@@ -39,10 +39,10 @@
         $.ajax({
             type: "POST",
             url: "data_file.php",
-            itemName: itemName ,
-            cache: false,
+            data: $("#item_name").val(), 
             success: function(html) {
-                alert('Saved');
+                console.log(html);
+                $("form").trigger("reset");
             }
         });
     });
