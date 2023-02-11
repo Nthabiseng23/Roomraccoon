@@ -2,7 +2,8 @@
     <head>
     <title>ROOMRACCOON Assessment</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>      
+</head>
 <body>
 
 <h1>Products list</h1>
@@ -44,8 +45,11 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
     while($row = mysqli_fetch_array($result)){
 		echo "<tr data-id = ".$row['id'].">
 			  <td>".$row['prod_name']."</td>
-	 		  <td><a class='btn btn-secondary edit'>Edit</a> | <a class='btn btn-danger delete'>Delete</a> | <input type='checkbox'>Checked</td>
-		   	  </tr>";
+	 		  <td><a class='btn btn-secondary edit'>Edit</a> | 
+              <a class='btn btn-danger delete' onclick='deleteItem(".$row['id'].")'>Delete</a> 
+                | <input type='checkbox'>Checked</td>
+		   	  </tr>
+               ";
         }
 	mysqli_close($con);
     ?>
@@ -54,6 +58,23 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
 
 <script>
     
+    function deleteItem(itemId){
+        var formData = {
+            itemId: itemId,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "edit_data.php",
+            data: formData,
+            dataType: "json",
+            encode: true, 
+            success: function(html) {
+                console.log(html);
+              
+            }
+        });
+    }
 </script>
 
 

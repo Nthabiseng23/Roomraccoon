@@ -38,7 +38,7 @@
 
         var formData = {
             itemName: itemName,
-            };
+        };
 
         $.ajax({
             type: "POST",
