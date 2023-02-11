@@ -44,12 +44,13 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
     $result = mysqli_query($con,"SELECT * FROM `products` LIMIT $offset, $total_records_per_page");
     while($row = mysqli_fetch_array($result)){
 		echo "<tr data-id = ".$row['id'].">
-			  <td>".$row['prod_name']."</td>
-	 		  <td><a class='btn btn-secondary edit'>Edit</a> | 
+			  <td><input type='text' id=editItem_".$row['id']." value='".$row["prod_name"]."'></td>
+	 		  <td><a class='btn btn-secondary' onclick=editItem(".$row['id'].")>Edit</a> | 
               <a class='btn btn-danger delete' onclick='deleteItem(".$row['id'].")'>Delete</a> 
-                | <input type='checkbox'>Checked</td>
+                | <input type='checkbox' id=check_".$row['id'].">Checked</td>
 		   	  </tr>
                ";
+
         }
 	mysqli_close($con);
     ?>
@@ -65,15 +66,34 @@ if (isset($_GET['page_no']) && $_GET['page_no']!="") {
 
         $.ajax({
             type: "POST",
+            url: "delete_data.php",
+            data: formData,
+            dataType: "json",
+            encode: true, 
+            success: function(html) {
+                alert("Deleted");
+              
+            }
+        });
+    }
+        function updateItem(itemId){ /** wanted to do the update on keyup, that's why I added the list items as input*/
+        var formData = {
+            itemId: itemId,
+            itemName: $("#item_name").val()
+        };
+
+        $.ajax({
+            type: "POST",
             url: "edit_data.php",
             data: formData,
             dataType: "json",
             encode: true, 
             success: function(html) {
-                console.log(html);
+                alert("Deleted");
               
             }
         });
+
     }
 </script>
 

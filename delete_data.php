@@ -7,12 +7,11 @@
     
     //Fetching Values from URL
     $itemId = $_POST['itemId'];
-    $itemName = $_POST['itemName'];
     
     //update query
-    $query = mysqli_query($connection,"update products SET name = $itemName WHERE id = $itemId");
+    $query = mysqli_query($connection,"update products SET deleted = 1 WHERE id = $itemId");
     
-    echo "Updated";
+    echo "Deleted";
     
     mysqli_close($connection);
 

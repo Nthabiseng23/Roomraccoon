@@ -49,6 +49,7 @@
             success: function(html) {
                 console.log(html);
                 $("form").trigger("reset");
+                alert("Saved");
             }
         });
     });
